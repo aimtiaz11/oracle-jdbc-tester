@@ -1,8 +1,10 @@
+import oracle.jdbc.OracleConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.*;
+import java.util.Properties;
 
 @SpringBootApplication
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
             throws ClassNotFoundException, SQLException {
 
         for (int i = 0; i < args.length; i++) {
-            System.out.println("arg " + i + " = " + args[i]);
+            LOG.info("arg " + i + " = " + args[i]);
         }
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,23 +25,25 @@ public class Main {
             return;
         }
 
+        Properties properties = new Properties();
+        properties.setProperty("user", args[0]);
+        properties.setProperty("password", args[1]);
+        properties.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CONNECT_TIMEOUT, "8000");
 
-        String username = args[0];
-        String password = args[1];
-        String url = args[2];
 
         try {
 
             LOG.info("****** Starting JDBC Connection test *******");
-            String sqlStatement = "select sysdate from DUAL";
-            Connection conn = DriverManager.getConnection(url, username, password);
+            String sqlStatement = "select sysdate from dual";
+
+            Connection conn = DriverManager.getConnection(args[2], properties);
             conn.setAutoCommit(false);
             Statement stmt = conn.createStatement();
-            LOG.info("Running SQL query: {}", sqlStatement);
+            LOG.info("Running SQL query: [{}]", sqlStatement);
             ResultSet resultSet = stmt.executeQuery(sqlStatement);
 
             while (resultSet.next()) {
-                LOG.info("Result of sql Query: {}", resultSet.getString(1));
+                LOG.info("Result of sql Query: [{}]", resultSet.getString(1));
             }
 
             stmt.close();
