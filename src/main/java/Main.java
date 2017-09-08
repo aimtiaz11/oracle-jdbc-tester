@@ -18,6 +18,12 @@ public class Main {
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
+        if (args.length != 3) {
+            LOG.error("Invalid number of arguments: Must provide 3 arguments in the format: <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>");
+            return;
+        }
+
+
         String username = args[0];
         String password = args[1];
         String url = args[2];
