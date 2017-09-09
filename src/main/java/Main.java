@@ -12,10 +12,10 @@ public class Main {
     final static Logger LOG = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args)
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException {
 
         for (int i = 0; i < args.length; i++) {
-            LOG.info("arg " + i + " = " + args[i]);
+            LOG.info("arg {} = {}", i, args[i]);
         }
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -30,24 +30,20 @@ public class Main {
         properties.setProperty("password", args[1]);
         properties.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CONNECT_TIMEOUT, "8000");
 
-
         try {
-
             LOG.info("****** Starting JDBC Connection test *******");
-            String sqlStatement = "select sysdate from dual";
+            String sqlQuery = "select sysdate from dual";
 
             Connection conn = DriverManager.getConnection(args[2], properties);
             conn.setAutoCommit(false);
-            Statement stmt = conn.createStatement();
-            LOG.info("Running SQL query: [{}]", sqlStatement);
-            ResultSet resultSet = stmt.executeQuery(sqlStatement);
+            Statement statement = conn.createStatement();
+            LOG.info("Running SQL query: [{}]", sqlQuery);
+            ResultSet resultSet = statement.executeQuery(sqlQuery);
 
             while (resultSet.next()) {
-                LOG.info("Result of sql Query: [{}]", resultSet.getString(1));
+                LOG.info("Result of SQL query: [{}]", resultSet.getString(1));
             }
-
-            stmt.close();
-
+            statement.close();
             LOG.info("JDBC connection test successful!");
         } catch (SQLException ex) {
             LOG.error("Exception occurred connecting to database: {}", ex.getMessage());
