@@ -1,4 +1,4 @@
-# jdbc-tester
+# oracle-jdbc-tester
 
 A simple command line application to test JDBC connection to Oracle Database.
 

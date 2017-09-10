@@ -11,8 +11,7 @@ public class Main {
 
     final static Logger LOG = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args)
-            throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException {
 
         for (int i = 0; i < args.length; i++) {
             LOG.info("arg {} = {}", i, args[i]);
