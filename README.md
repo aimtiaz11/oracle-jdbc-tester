@@ -16,6 +16,13 @@ Execute the JAR file with the following 3 parameters with schema name, password 
 ```
 java -jar target/jdbc-tester-1.0.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
 ```
+## How it works
+
+The application connects to the Oracle database and executes a single SQL query: `select sysdate from dual` and prints the output. 
+
+If it cannot connect for whatever reason it will fail by logging an error message.
+
+There is a hardcoded connection timeout set to 8 seconds.
 
 ## License
 
