@@ -4,6 +4,8 @@ A simple command line application to test JDBC connection to Oracle Database.
 
 ## How to run
 
+Install Oracle driver to your local Maven repository.
+
 Clone this repository and then run:
 
 ```
