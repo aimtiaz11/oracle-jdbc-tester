@@ -6,23 +6,25 @@ A simple command line application to test JDBC connection to Oracle Database.
 
 Clone this repository and then run:
 
-```
+```sh
 mvn clean package
 ```
-Or download the JAR file from [release](https://github.com/aimtiaz11/jdbc-tester/releases) page. 
 
-Execute the JAR file with the following 3 parameters with schema name, password and JDBC connection details:
+Or download the JAR file from [release](https://github.com/aimtiaz11/jdbc-tester/releases) page.
 
+Execute the JAR file with the following 2 parameters JDBC connection details and optional query, authentication credentials must be set as environment variables:
+
+```sh
+env ORACLEDB_USER=myuser ORACLEDB_PASS=mypass java -jar target/jdbc-tester-1.0.jar jdbc:oracle:thin:@//<host>:<port>/<SID> [optional_query]
 ```
-java -jar target/jdbc-tester-1.0.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
-```
+
 ## How it works
 
-The application connects to the Oracle database and executes a single SQL query: `select sysdate from dual` and prints the output. 
+The application connects to the Oracle database and executes a single SQL query: `select sysdate from dual` or provided query, and prints the output.
 
 If it cannot connect for whatever reason, it will fail by logging an error message.
 
-There is a hardcoded connection timeout set to 8 seconds.
+There is a default connection timeout set to 8 seconds, it can be changed via the environment variable `ORACLEDB_CONNTIMEOUT`.
 
 ## License
 
