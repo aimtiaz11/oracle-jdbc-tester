@@ -11,6 +11,7 @@ public class Main {
 
     private static final String DEFAULT_QUERY = "select sysdate from dual";
     private static final String DEFAULT_TIMEOUT = "8000";
+    private static final Integer DEFAULT_MAX_ROWS = 10;
 
     final static Logger LOG = LoggerFactory.getLogger(Main.class);
 
@@ -27,6 +28,7 @@ public class Main {
         String user = System.getenv("ORACLEDB_USER");
         String pass = System.getenv("ORACLEDB_PASS");
         String timeout = System.getenv("ORACLEDB_CONNTIMEOUT") != null ? System.getenv("ORACLEDB_CONNTIMEOUT") : DEFAULT_TIMEOUT;
+        Integer maxRows = System.getenv("RESULTSET_MAXROWS") != null ? Integer.parseInt(System.getenv("RESULTSET_MAXROWS")) : DEFAULT_MAX_ROWS;
         if (user == null || pass == null){
             LOG.error("ORACLEDB_USER and ORACLEDB_PASS env variables must be set");
             return;
@@ -48,9 +50,26 @@ public class Main {
             conn.setAutoCommit(false);
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlQuery);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
 
+            LOG.info("Printing query result");
+            int count = 0;
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print("|");
+                System.out.print(rsmd.getColumnName(i));
+                if (i == columnsNumber) System.out.print("\n");
+            }
             while (resultSet.next()) {
-                LOG.info("Result of SQL query: [{}]", resultSet.getString(1));
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) System.out.print("|");
+                    System.out.print(resultSet.getString(i));
+                    if (i == columnsNumber) System.out.print("\n");
+                }
+                count++;
+                if(count >= maxRows){
+                    break;
+                }
             }
             statement.close();
             LOG.info("JDBC connection test successful!");
