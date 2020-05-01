@@ -13,9 +13,19 @@ Or download the JAR file from [release](https://github.com/aimtiaz11/jdbc-tester
 
 Execute the JAR file with the following 3 parameters with schema name, password and JDBC connection details:
 
-```
+```sh
 java -jar target/jdbc-tester-1.0.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
 ```
+
+
+> When running this tool ad-hoc, a good security practice would be read the DB username and password into a variable by using `read` command in Linux (or similar) and then execute the JAR file.
+> This prevents DB credentials being stored in `./.bash_history`.
+
+
+```sh
+java -jar target/jdbc-tester-1.0.jar $DB_USER $DB_PASS jdbc:oracle:thin:@//<host>:<port>/<SID>
+```
+
 ## How it works
 
 The application connects to the Oracle database and executes a single SQL query: `select sysdate from dual` and prints the output. 
