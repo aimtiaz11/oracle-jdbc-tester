@@ -45,6 +45,7 @@ public class Main {
         properties.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CONNECT_TIMEOUT, timeout);
 
         try {
+            long start = System.currentTimeMillis();
             LOG.info("****** Starting JDBC Connection test *******");
             Connection conn = DriverManager.getConnection(jdbcUrl, properties);
             conn.setAutoCommit(false);
@@ -72,6 +73,8 @@ public class Main {
                 }
             }
             statement.close();
+            long end = System.currentTimeMillis();
+            LOG.info("Query just took {}ms", (end-start));
             LOG.info("JDBC connection test successful!");
         } catch (SQLException ex) {
             LOG.error("Exception occurred connecting to database: {}", ex.getMessage());
