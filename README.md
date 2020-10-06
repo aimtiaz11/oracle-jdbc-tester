@@ -19,7 +19,7 @@ java -jar target/jdbc-tester-1.0.jar <schema_name> <schema_password> jdbc:oracle
 
 
 > When running this tool ad-hoc, a good security practice would be read the DB username and password into a variable by using `read` command in Linux (or similar) and then execute the JAR file.
-> This prevents DB credentials being stored in `./.bash_history`.
+> This prevents DB credentials being stored in `~/.bash_history`.
 
 
 ```sh
