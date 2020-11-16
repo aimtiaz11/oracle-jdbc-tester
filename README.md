@@ -17,9 +17,11 @@ Execute the JAR file with the following 3 parameters with schema name, password 
 java -jar target/jdbc-tester-1.0.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
 ```
 
+### Secure your credentials
 
-> When running this tool ad-hoc, a good security practice would be read the DB username and password into a variable by using `read` command in Linux (or similar) and then execute the JAR file.
-> This prevents DB credentials being stored in `~/.bash_history`.
+When running this tool ad-hoc, a good security practice would be read the DB username and password into a variable by using `read` command in Linux (or similar) and then execute the JAR file.
+
+This prevents DB credentials being stored in `~/.bash_history`.
 
 
 ```sh
