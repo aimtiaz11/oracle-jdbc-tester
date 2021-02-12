@@ -25,7 +25,7 @@ This prevents DB credentials being stored in `~/.bash_history`.
 
 
 ```sh
-java -jar target/jdbc-tester-1.0.jar $DB_USER $DB_PASS jdbc:oracle:thin:@//<host>:<port>/<SID>
+java -jar target/jdbc-tester-1.1.jar $DB_USER $DB_PASS jdbc:oracle:thin:@//<host>:<port>/<SID>
 ```
 
 ## How it works
