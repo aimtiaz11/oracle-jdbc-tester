@@ -27,7 +27,7 @@ public class Main {
         Properties properties = new Properties();
         properties.setProperty("user", args[0]);
         properties.setProperty("password", args[1]);
-        properties.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CONNECT_TIMEOUT, "8000");
+        properties.setProperty(OracleConnection.CONNECTION_PROPERTY_THIN_NET_CONNECT_TIMEOUT, "10000");
 
         try {
             LOG.info("****** Starting JDBC Connection test *******");
@@ -42,7 +42,10 @@ public class Main {
             while (resultSet.next()) {
                 LOG.info("Result of SQL query: [{}]", resultSet.getString(1));
             }
+
             statement.close();
+            conn.close();
+
             LOG.info("JDBC connection test successful!");
         } catch (SQLException ex) {
             LOG.error("Exception occurred connecting to database: {}", ex.getMessage());

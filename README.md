@@ -34,7 +34,7 @@ The application connects to the Oracle database and executes a single SQL query:
 
 If it cannot connect for whatever reason, it will fail by logging an error message.
 
-There is a hardcoded connection timeout set to 8 seconds.
+There is a hardcoded connection timeout set to 10 seconds.
 
 ## License
 
