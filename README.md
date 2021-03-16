@@ -1,5 +1,7 @@
 # oracle-jdbc-tester
 
+[![Maven Build](https://github.com/aimtiaz11/oracle-jdbc-tester/actions/workflows/maven.yml/badge.svg)](https://github.com/aimtiaz11/oracle-jdbc-tester/actions/workflows/maven.yml)
+
 A simple command line application to test JDBC connection to Oracle Database.
 
 ## How to run
