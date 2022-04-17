@@ -6,14 +6,15 @@ A simple command line application to test JDBC connection to Oracle Database.
 
 ## How to run
 
-Clone this repository and then run:
+Clone this repository and then run below Maven command to build the executable JAR file.
 
 ```
 mvn clean package
 ```
-Or download the JAR file from [release](https://github.com/aimtiaz11/jdbc-tester/releases) page. 
 
-Execute the JAR file with the following 3 parameters with schema name, password and JDBC connection details:
+Alternatively, download the JAR file from [release](https://github.com/aimtiaz11/jdbc-tester/releases) page. 
+
+Execute the JAR file with the following 3 parameters with schema name, password and JDBC connection string:
 
 ```sh
 java -jar target/jdbc-tester-1.1.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
