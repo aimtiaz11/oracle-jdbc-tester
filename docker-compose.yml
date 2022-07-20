@@ -1,0 +1,6 @@
+version: '3'
+services:
+  jdbc-tester:
+    build: .
+    container_name: jdbc-tester
+    command: sh -c "java -jar jdbc-tester-1.1.jar ${DB_USER} ${DB_PASS} jdbc:oracle:thin:@//${DB_HOST}:${DB_PORT}/${DB_SID}"

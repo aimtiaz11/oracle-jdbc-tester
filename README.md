@@ -20,6 +20,17 @@ Execute the JAR file with the following 3 parameters with schema name, password 
 java -jar target/jdbc-tester-1.1.jar <schema_name> <schema_password> jdbc:oracle:thin:@//<host>:<port>/<SID>
 ```
 
+## How to run docker-compose.yml  
+Required installed docker and docker compose   
+Clone this repository and then create .env file with DB credentials, host ip and port.  
+For example see in .env_example  
+After this run:
+```sh
+docker-compose up
+```
+  
+
+
 ### Secure your credentials
 
 When running this tool ad-hoc, a good security practice would be read the DB username and password into a variable by using `read` command in Linux (or similar) and then execute the JAR file.
