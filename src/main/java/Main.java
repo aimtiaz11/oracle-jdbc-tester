@@ -49,6 +49,8 @@ public class Main {
             LOG.info("JDBC connection test successful!");
         } catch (SQLException ex) {
             LOG.error("Exception occurred connecting to database: {}", ex.getMessage());
+            System.exit(-1);
         }
+        System.exit(0);
     }
 }
